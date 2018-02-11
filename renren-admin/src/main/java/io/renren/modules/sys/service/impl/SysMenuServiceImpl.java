@@ -18,6 +18,7 @@ package io.renren.modules.sys.service.impl;
 
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.google.common.collect.Lists;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.MapUtils;
 import io.renren.modules.sys.dao.SysMenuDao;
@@ -101,7 +102,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 	 * 递归
 	 */
 	private List<SysMenuEntity> getMenuTreeList(List<SysMenuEntity> menuList, List<Long> menuIdList){
-		List<SysMenuEntity> subMenuList = new ArrayList<SysMenuEntity>();
+		List<SysMenuEntity> subMenuList = Lists.newArrayList();
 		
 		for(SysMenuEntity entity : menuList){
 			//目录
