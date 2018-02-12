@@ -53,7 +53,7 @@ layui.config({
 	                }
 	            });
 	        }
-	    }).trigger("click");
+	    });
 	});
 });
 
