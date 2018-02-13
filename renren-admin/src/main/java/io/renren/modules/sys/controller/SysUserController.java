@@ -37,13 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 系统用户
- * 
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年10月31日 上午10:40:10
- */
 @RestController
 @RequestMapping("/sys/user")
 public class SysUserController extends AbstractController {
@@ -77,15 +70,16 @@ public class SysUserController extends AbstractController {
 	@SysLog("修改密码")
 	@RequestMapping("/password")
 	public R password(String password, String newPassword){
-		Assert.isBlank(newPassword, "新密码不为能空");
+	    Assert.isBlank(password, "原密码不能为空");
+		Assert.isBlank(newPassword, "新密码不能为空");
 
 		//原密码
-		password = ShiroUtils.sha256(password, getUser().getSalt());
+		password = ShiroUtils.sha256(password, super.getUser().getSalt());
 		//新密码
-		newPassword = ShiroUtils.sha256(newPassword, getUser().getSalt());
+		newPassword = ShiroUtils.sha256(newPassword, super.getUser().getSalt());
 				
 		//更新密码
-		boolean flag = sysUserService.updatePassword(getUserId(), password, newPassword);
+		boolean flag = sysUserService.updatePassword(super.getUserId(), password, newPassword);
 		if(!flag){
 			return R.error("原密码不正确");
 		}

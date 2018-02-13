@@ -114,7 +114,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	public boolean updatePassword(Long userId, String password, String newPassword) {
         SysUserEntity userEntity = new SysUserEntity();
         userEntity.setPassword(newPassword);
-        return this.update(userEntity,
+        return super.update(userEntity,
                 new EntityWrapper<SysUserEntity>().eq("user_id", userId).eq("password", password));
     }
 
