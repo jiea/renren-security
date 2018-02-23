@@ -20,9 +20,6 @@ import java.lang.annotation.*;
 
 /**
  * 数据过滤
- *
- * @author Mark sunlightcs@gmail.com
- * @since 3.0.0 2017-09-17
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

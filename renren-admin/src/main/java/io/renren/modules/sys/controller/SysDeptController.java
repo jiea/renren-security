@@ -16,6 +16,7 @@
 
 package io.renren.modules.sys.controller;
 
+import com.google.common.collect.Maps;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.R;
 import io.renren.modules.sys.entity.SysDeptEntity;
@@ -50,7 +51,7 @@ public class SysDeptController extends AbstractController {
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:dept:list")
 	public List<SysDeptEntity> list(){
-		List<SysDeptEntity> deptList = sysDeptService.queryList(new HashMap<String, Object>());
+		List<SysDeptEntity> deptList = sysDeptService.queryList(Maps.newHashMap());
 
 		return deptList;
 	}
