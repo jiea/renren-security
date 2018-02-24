@@ -18,6 +18,7 @@ package io.renren.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.google.common.collect.Lists;
 import io.renren.common.annotation.DataFilter;
 import io.renren.common.utils.Constant;
 import io.renren.modules.sys.dao.SysDeptDao;
@@ -50,17 +51,17 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptDao, SysDeptEntity> i
 	}
 
 	@Override
-	public List<Long> queryDetpIdList(Long parentId) {
-		return baseMapper.queryDetpIdList(parentId);
+	public List<Long> queryDeptIdList(Long parentId) {
+		return baseMapper.queryDeptIdList(parentId);
 	}
 
 	@Override
 	public List<Long> getSubDeptIdList(Long deptId){
 		//部门及子部门ID列表
-		List<Long> deptIdList = new ArrayList<>();
+		List<Long> deptIdList = Lists.newArrayList();
 
 		//获取子部门ID
-		List<Long> subIdList = queryDetpIdList(deptId);
+		List<Long> subIdList = queryDeptIdList(deptId);
 		getDeptTreeList(subIdList, deptIdList);
 
 		return deptIdList;
@@ -71,7 +72,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptDao, SysDeptEntity> i
 	 */
 	private void getDeptTreeList(List<Long> subIdList, List<Long> deptIdList){
 		for(Long deptId : subIdList){
-			List<Long> list = queryDetpIdList(deptId);
+			List<Long> list = queryDeptIdList(deptId);
 			if(list.size() > 0){
 				getDeptTreeList(list, deptIdList);
 			}
